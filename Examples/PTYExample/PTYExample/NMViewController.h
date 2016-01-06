@@ -3,6 +3,7 @@
 @interface NMViewController : UIViewController
 
 @property (nonatomic) IBOutlet UITextField *hostField;
+@property (nonatomic) IBOutlet UITextField *portField;
 @property (nonatomic) IBOutlet UITextField *usernameField;
 @property (nonatomic) IBOutlet UITextField *passwordField;
 @property (nonatomic) IBOutlet UISegmentedControl *authenticationControl;

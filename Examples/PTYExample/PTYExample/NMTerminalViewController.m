@@ -45,7 +45,7 @@
 
 - (IBAction)connect:(id)sender {
     dispatch_async(self.sshQueue, ^{
-        self.session = [NMSSHSession connectToHost:self.host withUsername:self.username];
+        self.session = [NMSSHSession connectToHost:self.host port:self.port.integerValue withUsername:self.username];
         self.session.delegate = self;
 
         if (!self.session.connected) {
@@ -60,13 +60,89 @@
             [self appendToTextView:[NSString stringWithFormat:@"ssh %@@%@\n", self.session.username, self.host]];
         });
 
-        if (self.keyboardInteractive) {
-            [self.session authenticateByKeyboardInteractive];
-        }
-        else {
-            [self.session authenticateByPassword:self.password];
-        }
+        
+        NSBundle *mainBundle    = [NSBundle mainBundle];
+        NSString *publicKey     = [mainBundle pathForResource: @"id_rsa_farAdmin" ofType: @"pub"];
+        NSString *privateKey    = [mainBundle pathForResource: @"id_rsa_farAdmin" ofType: nil];
 
+        NSError* error = nil;
+        NSString *textPublicKey;
+        NSString *textPrivateKey;
+        
+        switch ( self.selectedSegmentIndex ) {
+            case 0:
+                [self.session authenticateByPassword:self.password];
+                break;
+            case 1:
+                [self.session authenticateByKeyboardInteractive];
+                break;
+            case 2:
+                NSLog(@"Authenticate by: Public and Private Key");
+                [self.session authenticateByPublicKey:publicKey
+                                           privateKey:privateKey
+                                          andPassword:self.password];
+                break;
+            case 3:
+                
+                
+//                //reading
+//                do {
+//                    let textPrivateKey = try NSString(contentsOfFile: self.privateKeyFile, encoding: NSASCIIStringEncoding)
+//                    print("LECTURA DE FICHERO private: \(textPrivateKey)")
+//                }
+//                catch {
+//                    print("ERROR, no puedo LEER el fichero filePrivateKey")
+//                    return false
+//                }
+//                
+//                //reading
+//                do {
+//                    let textPublicKey = try NSString(contentsOfFile: self.publicKeyFile, encoding: NSASCIIStringEncoding)
+//                    print("LECTURA DE FICHERO public: \(textPublicKey)")
+//                }
+//                catch {
+//                    print("ERROR, no puedo LEER el fichero filePublicKey")
+//                    return false
+//                }
+                
+                textPublicKey = [NSString stringWithContentsOfFile:publicKey
+                                                          encoding:NSASCIIStringEncoding
+                                                             error:&error];
+                if(error) { // If error object was instantiated, handle it.
+                    NSLog(@"ERROR while loading from file publicKey: %@", error);
+                    // …
+                } else {
+                    NSLog(@"Contents of publicKeyFile: %@", textPublicKey);
+                }
+
+                textPrivateKey = [NSString stringWithContentsOfFile:privateKey
+                                                          encoding:NSASCIIStringEncoding
+                                                             error:&error];
+                if(error) { // If error object was instantiated, handle it.
+                    NSLog(@"ERROR while loading from file privateKey: %@", error);
+                    // …
+                } else {
+                    NSLog(@"Contents of privateKeyFile: %@", textPrivateKey);
+                }
+                
+
+                
+                
+                
+                
+                
+                NSLog(@"Authenticate by: Public and Private Key");
+                [self.session authenticateByPublicKey:publicKey
+                                           privateKey:privateKey
+                                          andPassword:self.password];
+                NSLog(@"Authenticate by: Password");
+                [self.session authenticateByPassword:self.password];
+                break;
+            default:
+                [self appendToTextView:@"Parameters error"];
+                return;
+        }
+        
         if (!self.session.authorized) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self appendToTextView:@"Authentication error\n"];

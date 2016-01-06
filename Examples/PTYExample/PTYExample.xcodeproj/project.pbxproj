@@ -21,6 +21,8 @@
 		18AE8FE018BBF0C100AE0FC3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AE8FDF18BBF0C100AE0FC3 /* libz.dylib */; };
 		18AE8FE218BBF0C700AE0FC3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AE8FE118BBF0C700AE0FC3 /* CFNetwork.framework */; };
 		18AE8FE518BBF11B00AE0FC3 /* NMTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AE8FE418BBF11B00AE0FC3 /* NMTerminalViewController.m */; };
+		A01DDD361C3140B200ACFDD3 /* id_rsa_farAdmin in Resources */ = {isa = PBXBuildFile; fileRef = A01DDD341C3140B200ACFDD3 /* id_rsa_farAdmin */; };
+		A01DDD371C3140B200ACFDD3 /* id_rsa_farAdmin.pub in Resources */ = {isa = PBXBuildFile; fileRef = A01DDD351C3140B200ACFDD3 /* id_rsa_farAdmin.pub */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		18AE8FE118BBF0C700AE0FC3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		18AE8FE318BBF11B00AE0FC3 /* NMTerminalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMTerminalViewController.h; sourceTree = "<group>"; };
 		18AE8FE418BBF11B00AE0FC3 /* NMTerminalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMTerminalViewController.m; sourceTree = "<group>"; };
+		A01DDD341C3140B200ACFDD3 /* id_rsa_farAdmin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = id_rsa_farAdmin; sourceTree = "<group>"; };
+		A01DDD351C3140B200ACFDD3 /* id_rsa_farAdmin.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = id_rsa_farAdmin.pub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				18AE8FAE18BBEDD000AE0FC3 /* PTYExample */,
+				A01DDD331C3140B200ACFDD3 /* FarKeys */,
 				18AE8FA718BBEDD000AE0FC3 /* Frameworks */,
 				18AE8FA618BBEDD000AE0FC3 /* Products */,
 			);
@@ -123,6 +128,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A01DDD331C3140B200ACFDD3 /* FarKeys */ = {
+			isa = PBXGroup;
+			children = (
+				A01DDD341C3140B200ACFDD3 /* id_rsa_farAdmin */,
+				A01DDD351C3140B200ACFDD3 /* id_rsa_farAdmin.pub */,
+			);
+			name = FarKeys;
+			path = PTYExample/FarKeys;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -176,10 +191,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01DDD361C3140B200ACFDD3 /* id_rsa_farAdmin in Resources */,
 				18AE8FC118BBEDD100AE0FC3 /* Images.xcassets in Resources */,
 				183E6A341B38510500727F97 /* Launch Screen.xib in Resources */,
 				18AE8FB318BBEDD000AE0FC3 /* InfoPlist.strings in Resources */,
 				18AE8FBC18BBEDD100AE0FC3 /* Main.storyboard in Resources */,
+				A01DDD371C3140B200ACFDD3 /* id_rsa_farAdmin.pub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
